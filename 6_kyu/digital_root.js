@@ -1,11 +1,10 @@
-const digitalRoot = (num) => {
-    const sum = String(num)
-        .split('')
-        .reduce((a, c) => a + Number(c), 0);
-    if (sum < 10) {
-        return sum;
-    }
-    return digitalRoot(sum);
-};
+const digitalRoot = (num) =>
+    num < 10
+        ? num
+        : digitalRoot(
+              String(num)
+                  .split('')
+                  .reduce((a, c) => a + Number(c), 0)
+          );
 
 console.log(digitalRoot(456));
