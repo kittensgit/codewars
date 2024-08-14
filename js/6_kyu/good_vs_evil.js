@@ -1,4 +1,4 @@
-const goodRaces = {
+const goodRacesWorth = {
     hobbits: 1,
     men: 2,
     elves: 3,
@@ -7,7 +7,7 @@ const goodRaces = {
     wizards: 10,
 };
 
-const evilRaces = {
+const evilRacesWorth = {
     orcs: 1,
     men: 2,
     wargs: 2,
@@ -18,28 +18,26 @@ const evilRaces = {
 };
 
 const goodVsEvil = (good, evil) => {
-    const goodList = Object.values(goodRaces);
-    const evilList = Object.values(evilRaces);
+    const goodListWorth = Object.values(goodRacesWorth);
+    const evilListWorth = Object.values(evilRacesWorth);
 
-    const calcPower = (raceValues, raceList) =>
-        raceValues
+    const calcWorth = (side, worthList) =>
+        side
             .split(' ')
             .reduce(
                 (acc, currVal, index) =>
-                    acc + Number(currVal) * raceList[index],
+                    acc + Number(currVal) * worthList[index],
                 0
             );
 
-    const goodPower = calcPower(good, goodList);
-    const evilPower = calcPower(evil, evilList);
+    const goodWorth = calcWorth(good, goodListWorth);
+    const evilWorth = calcWorth(evil, evilListWorth);
 
-    if (goodPower > evilPower) {
-        return 'Battle Result: Good triumphs over Evil';
-    } else if (evilPower > goodPower) {
-        return 'Battle Result: Evil eradicates all trace of Good';
-    } else {
-        return 'Battle Result: No victor on this battle field';
-    }
+    return goodWorth > evilWorth
+        ? 'Battle Result: Good triumphs over Evil'
+        : evilWorth > goodWorth
+        ? 'Battle Result: Evil eradicates all trace of Good'
+        : 'Battle Result: No victor on this battle field';
 };
 
-console.log(goodVsEvil('1 1 1 1 1 1', '1 0 1 1 1 1 1'));
+console.log(goodVsEvil('1 1 1 0 1 1', '1 0 1 1 1 1 0'));
