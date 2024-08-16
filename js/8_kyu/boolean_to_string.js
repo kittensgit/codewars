@@ -1,0 +1,1 @@
+const booleanToString = (bool) => `${bool}`;
